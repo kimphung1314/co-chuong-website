@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cô Chương - Đồng hành cùng Ba Mẹ nuôi con hiền tài | Tắm bé & Chăm sóc mẹ sau sinh tại nhà</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#d63d7a">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png" type="image/png">
 <style>
   :root{
     --pink-dark:#d63d7a;
@@ -390,6 +394,14 @@
     .price-table{font-size:12.5px;}
     .about-wrap{flex-direction:column;}
   }
+  .install-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;align-items:center;justify-content:center;}
+  .install-modal-card{background:#fff;border-radius:18px;padding:32px 28px 24px;width:min(320px,88vw);text-align:center;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.25);}
+  .install-modal-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:22px;color:var(--muted);cursor:pointer;line-height:1;}
+  .install-modal-icon{width:72px;height:72px;border-radius:18px;object-fit:cover;margin-bottom:14px;box-shadow:0 6px 16px rgba(0,0,0,.15);}
+  .install-modal-card h4{font-size:17px;color:var(--ink);margin-bottom:22px;}
+  .install-modal-actions{display:flex;flex-direction:column;gap:10px;}
+  .install-modal-open{background:var(--pink-dark);color:#fff;border:none;padding:12px;border-radius:30px;font-weight:700;font-size:14.5px;cursor:pointer;font-family:inherit;}
+  .install-modal-later{background:#f3f3f3;color:var(--ink);border:none;padding:12px;border-radius:30px;font-weight:600;font-size:14.5px;cursor:pointer;font-family:inherit;}
 </style>
 </head>
 <body>
@@ -3721,6 +3733,41 @@ const BOOKED_SLOTS = [
     }).catch(() => {});
   });
 })();
+
+/* PWA install prompt */
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  document.getElementById('installModal').style.display = 'flex';
+});
+function closeInstallModal() {
+  document.getElementById('installModal').style.display = 'none';
+}
+function doInstallApp() {
+  closeInstallModal();
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    deferredInstallPrompt = null;
+  }
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 </script>
+
+<div class="install-modal-overlay" id="installModal">
+  <div class="install-modal-card">
+    <button class="install-modal-close" onclick="closeInstallModal()">×</button>
+    <img src="icon-192.png" alt="Cô Chương" class="install-modal-icon">
+    <h4>Mở ứng dụng Cô Chương</h4>
+    <div class="install-modal-actions">
+      <button class="install-modal-open" onclick="doInstallApp()">Mở</button>
+      <button class="install-modal-later" onclick="closeInstallModal()">Không phải bây giờ</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
