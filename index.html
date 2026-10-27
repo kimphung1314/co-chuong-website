@@ -230,6 +230,9 @@
   /* Kien thuc */
   .kienthuc{background:#fff;}
   .prep-alert{background:#fff8e8;border:3px solid #f0a93c;border-radius:20px;padding:12px;margin:0 auto 36px;max-width:520px;box-shadow:0 10px 30px rgba(240,169,60,.25);}
+  .prep-reveal{background:#fff8e8;border:2px solid #f0a93c;border-radius:16px;padding:14px;margin-bottom:14px;}
+  .prep-reveal-head{font-size:13.5px;font-weight:700;color:#a85c00;margin-bottom:10px;text-align:center;}
+  .prep-reveal-poster{display:block;width:100%;border-radius:10px;}
   .prep-alert-poster{display:block;width:100%;border-radius:12px;}
   .kt-tabs{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:30px;border-bottom:1px solid #f3dbe4;padding-bottom:14px;}
   .kt-tab{background:none;border:none;padding:8px 18px;border-radius:20px;font-size:14px;font-weight:700;color:var(--muted);cursor:pointer;}
@@ -1196,6 +1199,11 @@
             <input type="checkbox" id="surchargeConfirm">
             <span>Tôi đồng ý <b>phụ phí đi lại 10.000đ/buổi</b> vì ở khu vực xa (Quảng Long, Quảng Chính) — đã cộng thêm vào số tiền chuyển khoản đặt cọc ở trên</span>
           </label>
+
+          <div class="prep-reveal" id="prepRevealBox" style="display:none;">
+            <div class="prep-reveal-head">📋 Trước khi gửi yêu cầu — ba mẹ xem nhanh những thứ cần chuẩn bị khi Cô Chương đến nhà:</div>
+            <img src="images/loi-dan-do-poster.webp" alt="Lời dặn dò trước khi Cô Chương đến tắm cho bé" class="prep-reveal-poster">
+          </div>
 
           <button type="submit" class="btn btn-solid">✅ Đã chuyển khoản – Gửi yêu cầu tư vấn</button>
           <p class="booking-note">⏰ Khung giờ bạn chọn sẽ được Cô Chương xác nhận lại trong vòng 30 phút qua Zalo/điện thoại để tránh trùng lịch.</p>
@@ -3657,6 +3665,11 @@ const BOOKED_SLOTS = [
   const depositConfirm = document.getElementById('depositConfirm');
   const depositLabel = depositConfirm.closest('.deposit-check');
   const bankQrBox = document.getElementById('bankQrBox');
+  const prepRevealBox = document.getElementById('prepRevealBox');
+  depositConfirm.addEventListener('change', () => {
+    prepRevealBox.style.display = depositConfirm.checked ? 'block' : 'none';
+    if (depositConfirm.checked) prepRevealBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
 
   // Tạo lại mã QR chuyển khoản động, nội dung chuyển khoản = tên khách hàng vừa nhập ở đầu form
   function removeDiacritics(str) {
