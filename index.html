@@ -177,6 +177,7 @@
   .pkg-content .tag-phuchoi{background:#efe9fb;color:#7c5cbf;box-shadow:0 2px 8px rgba(124,92,191,.2);}
   .pkg-content .tag-nanny{background:#e4f0fd;color:#2e7fd6;box-shadow:0 2px 8px rgba(46,127,214,.2);}
   .pkg-content .tag-datten{background:#fde8dc;color:#d9661f;box-shadow:0 2px 8px rgba(217,102,31,.2);}
+  .pkg-content .tag-massage{background:#ffe3ef;color:var(--pink-dark);box-shadow:0 2px 8px rgba(214,61,122,.2);}
   #quy-trinh .section-title .eyebrow{font-size:20px;letter-spacing:.3px;text-transform:none;}
   .pkg-content h3{font-size:23px;color:var(--pink-dark);margin-bottom:12px;}
   .steps{counter-reset:step;margin:16px 0;}
@@ -311,6 +312,7 @@
   .qr-info{flex:1 1 180px;}
   .qr-info p{font-size:13px;margin-bottom:4px;color:var(--ink);}
   .qr-info .qr-note{margin-top:8px;background:#fff0f6;border:1px dashed var(--pink);border-radius:8px;padding:8px 10px;font-size:12.5px;color:var(--pink-dark);}
+  .qr-info .qr-total-note{background:#ffe3ef;border:1.5px solid var(--pink-dark);font-size:13.5px;font-weight:600;}
   .qr-confirm-btn{display:block;width:100%;text-align:center;margin-top:10px;background:#2ab96b;color:#fff;padding:10px 14px;border-radius:20px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:inherit;}
   .qr-confirm-btn:hover{background:#239658;}
   .zalo-direct-btn{background:#0068ff;margin-top:0;margin-bottom:14px;}
@@ -346,7 +348,9 @@
   .time-slot.booked,.date-chip.booked{background:#f3f3f3;border-color:#e2e2e2;color:#aaa;cursor:not-allowed;}
   .time-slot.booked:hover,.date-chip.booked:hover{border-color:#e2e2e2;}
   .slot-badge{font-size:11px;background:#e2e2e2;color:#888;padding:2px 8px;border-radius:10px;font-weight:700;}
-  .booking-confirm{display:none;background:#eafbf2;border:1px dashed #2ab96b;border-radius:10px;padding:10px 14px;font-size:13px;color:#1f8a4c;margin-bottom:14px;}
+  .booking-confirm{display:none;background:#eafbf2;border:1px dashed #2ab96b;border-radius:10px;padding:10px 14px;font-size:13px;color:#1f8a4c;margin-bottom:14px;line-height:1.7;}
+  .session-block{margin-bottom:4px;}
+  .session-block+.session-block{margin-top:4px;padding-top:14px;border-top:1px dashed #f3dbe4;}
   .booking-confirm.show{display:block;}
   .booking-note{font-size:11.5px;color:var(--muted);text-align:center;margin-top:10px;}
   .booking-warning{font-size:12.5px;line-height:1.6;color:#8a4b00;text-align:center;background:#fff4e0;border:1.5px solid #f0a93c;border-radius:10px;padding:10px 14px;margin-top:10px;}
@@ -452,6 +456,7 @@
         <div class="nav-dropdown-menu">
           <a href="#pkg-co-ban" onclick="filterPKG('pkg-co-ban')">Gói Cơ bản</a>
           <a href="#pkg-vip" onclick="filterPKG('pkg-vip')">Gói VIP</a>
+          <a href="#pkg-massage" onclick="filterPKG('pkg-massage')">Massage mẹ bầu</a>
           <a href="#pkg-phuc-hoi" onclick="filterPKG('pkg-phuc-hoi')">Phục hồi sau sinh</a>
           <a href="#pkg-nanny" onclick="filterPKG('pkg-nanny')">Nanny cao cấp</a>
           <a href="#pkg-dat-ten" onclick="filterPKG('pkg-dat-ten')">Đặt tên cho bé</a>
@@ -636,7 +641,7 @@
             <h4>Massage mẹ bầu toàn diện</h4>
             <p>Massage tại nhà giúp mẹ bầu thư giãn toàn thân, giảm đau mỏi trong thai kỳ.</p>
             <div class="price">Chỉ từ <b>450.000đ</b>/buổi</div>
-            <div class="svc-actions"><a href="#nhan-tu-van" class="svc-btn-order">Đặt ngay</a></div>
+            <div class="svc-actions"><a href="#nhan-tu-van" class="svc-btn-order">Đặt ngay</a><a href="#pkg-massage" class="link-more" onclick="filterPKG('pkg-massage')">Xem chi tiết →</a></div>
           </div>
         </div>
         <div class="svc-card" id="svc-phuc-hoi">
@@ -696,6 +701,7 @@
     <div class="kt-tabs">
       <button class="kt-tab active" data-pkg="pkg-co-ban" onclick="filterPKG('pkg-co-ban')">Cơ bản</button>
       <button class="kt-tab" data-pkg="pkg-vip" onclick="filterPKG('pkg-vip')">VIP</button>
+      <button class="kt-tab" data-pkg="pkg-massage" onclick="filterPKG('pkg-massage')">Massage mẹ bầu</button>
       <button class="kt-tab" data-pkg="pkg-phuc-hoi" onclick="filterPKG('pkg-phuc-hoi')">Phục hồi sau sinh</button>
       <button class="kt-tab" data-pkg="pkg-nanny" onclick="filterPKG('pkg-nanny')">Nanny cao cấp</button>
       <button class="kt-tab" data-pkg="pkg-dat-ten" onclick="filterPKG('pkg-dat-ten')">Đặt tên cho bé</button>
@@ -753,6 +759,35 @@
             <li>Hơ lá trầu không,<br>hỗ trợ rửa mũi, cắt tóc đầy tháng cho bé</li>
             <li>Theo dõi cân nặng theo định kỳ</li>
             <li>Đồng hành cùng mẹ các vấn đề về sữa:<br>cương sữa sinh lý,<br>phát hiện sớm tắc tia,<br>viêm tuyến vú, áp xe...</li>
+          </ul>
+        </div>
+        <div class="perk-note">🎁 Đặc quyền riêng cho khách mẹ bé nhà Cô Chương:<br>trải nghiệm dịch vụ KHÁM TÊN CHO BÉ 99K hoàn toàn miễn phí.</div>
+      </div>
+    </div>
+
+    <div class="pkg-block reverse" id="pkg-massage">
+      <div class="pkg-img"><img src="images/massage-me-bau-poster.jpg" alt="Massage mẹ bầu toàn diện — Cô Chương"></div>
+      <div class="pkg-content">
+        <span class="tag tag-massage">MASSAGE MẸ BẦU TOÀN DIỆN</span>
+        <h3>Chăm sóc dưỡng sinh toàn thân cho mẹ bầu</h3>
+        <div class="bonus-box">
+          <h4>❤ Tập trung vùng đau mỏi</h4>
+          <ul>
+            <li>Cổ vai gáy · Lưng eo · Chân tay</li>
+            <li>Vùng đầu · Hông và xương chậu</li>
+          </ul>
+        </div>
+        <div class="bonus-box">
+          <h4>❤ Thư giãn cơ thể · hỗ trợ</h4>
+          <ul>
+            <li>Lưu thông máu huyết, giúp mẹ khỏe hơn trong thai kỳ</li>
+          </ul>
+        </div>
+        <div class="bonus-box">
+          <h4>❤ Chăm sóc nhẹ nhàng, riêng tư, tận tâm tại nhà</h4>
+          <ul>
+            <li>Ưu tiên sự thoải mái của mẹ</li>
+            <li>Tận nhà — mẹ đỡ phải di chuyển</li>
           </ul>
         </div>
         <div class="perk-note">🎁 Đặc quyền riêng cho khách mẹ bé nhà Cô Chương:<br>trải nghiệm dịch vụ KHÁM TÊN CHO BÉ 99K hoàn toàn miễn phí.</div>
@@ -1146,34 +1181,16 @@
             <option>Đặt tên cho bé</option>
           </select>
 
-          <label class="booking-label">📅 Chọn ngày hẹn mong muốn</label>
-          <button type="button" class="picker-toggle" id="dateToggle">
-            <span id="dateToggleText">Bấm để chọn ngày</span>
-            <span class="chevron">▾</span>
-          </button>
-          <div class="date-picker" id="datePicker">
-            <div class="cal-dow-row"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
-            <div class="cal-grid" id="calGrid"></div>
-          </div>
+          <label class="booking-label">🔢 Muốn đặt bao nhiêu buổi cùng lúc?</label>
+          <select id="sessionCountSelect">
+            <option value="1">1 buổi</option>
+            <option value="2">2 buổi (chọn 2 ngày khác nhau, cọc gộp 1 lần)</option>
+            <option value="3">3 buổi (chọn 3 ngày khác nhau, cọc gộp 1 lần)</option>
+          </select>
 
-          <label class="booking-label">🕒 Chọn khung giờ</label>
-          <button type="button" class="picker-toggle" id="timeToggle">
-            <span id="timeToggleText">Bấm để chọn giờ</span>
-            <span class="chevron">▾</span>
-          </button>
-          <div class="time-picker" id="timePicker">
-            <button type="button" class="time-slot" data-time="07:30">07:30</button>
-            <button type="button" class="time-slot" data-time="09:30">09:30</button>
-            <button type="button" class="time-slot" data-time="11:30">11:30</button>
-            <button type="button" class="time-slot" data-time="13:30">13:30</button>
-            <button type="button" class="time-slot" data-time="15:30">15:30</button>
-            <button type="button" class="time-slot" data-time="17:30">17:30</button>
-            <button type="button" class="time-slot" data-time="19:30">19:30</button>
-          </div>
-          <input type="hidden" id="selectedDate">
-          <input type="hidden" id="selectedTime">
+          <div id="sessionsContainer"></div>
 
-          <div class="booking-confirm" id="bookingConfirm">✅ Đã chọn: <b id="bookingConfirmText"></b></div>
+          <div class="booking-confirm" id="bookingConfirm"><b id="bookingConfirmText"></b></div>
 
           <textarea id="customerNote" rows="3" placeholder="Ghi chú thêm (nếu có)"></textarea>
 
@@ -1189,6 +1206,7 @@
               <p><b>Ngân hàng:</b> SHB (Sài Gòn - Hà Nội)</p>
               <p><b>Chủ tài khoản:</b> HÀ THỊ CHƯƠNG</p>
               <p><b>Số tài khoản:</b> 6669991689</p>
+              <p class="qr-note qr-total-note" id="estimatedTotalNote" style="display:none;"></p>
               <p class="qr-note" id="surchargeReminder" style="display:none;">⚠️ Khu vực xa: nhớ <b>cộng thêm 10.000đ/buổi phụ phí đi lại</b> vào số tiền chuyển khoản.</p>
             </div>
           </div>
@@ -3519,26 +3537,18 @@ const BOOKED_SLOTS = [
 ];
 
 (function () {
-  const datePicker = document.getElementById('datePicker');
-  const calGrid = document.getElementById('calGrid');
-  const timePicker = document.getElementById('timePicker');
-  const dateToggle = document.getElementById('dateToggle');
-  const dateToggleText = document.getElementById('dateToggleText');
-  const timeToggle = document.getElementById('timeToggle');
-  const timeToggleText = document.getElementById('timeToggleText');
-  const selectedDateInput = document.getElementById('selectedDate');
-  const selectedTimeInput = document.getElementById('selectedTime');
+  const sessionsContainer = document.getElementById('sessionsContainer');
+  const sessionCountSelect = document.getElementById('sessionCountSelect');
   const bookingConfirm = document.getElementById('bookingConfirm');
   const bookingConfirmText = document.getElementById('bookingConfirmText');
   const bookingForm = document.getElementById('bookingForm');
-  if (!datePicker) return;
+  if (!sessionsContainer) return;
 
   const dowNames = ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'];
-  const ALL_TIMES = Array.from(timePicker.querySelectorAll('.time-slot')).map(s => s.dataset.time);
+  const TIME_SLOTS = ['07:30', '09:30', '11:30', '13:30', '15:30', '17:30', '19:30'];
   const today = new Date();
-  let chosenDateLabel = '';
-  let chosenDom = '';
-  let chosenTimeLabel = '';
+  const MAX_SESSIONS = 3;
+  const sessions = []; // { dateLabel, dom, timeLabel }
 
   function closePicker(toggleEl, pickerEl) {
     toggleEl.classList.remove('open');
@@ -3549,111 +3559,225 @@ const BOOKED_SLOTS = [
     pickerEl.classList.add('open');
   }
 
-  dateToggle.addEventListener('click', () => {
-    const isOpen = datePicker.classList.contains('open');
-    closePicker(timeToggle, timePicker);
-    if (isOpen) closePicker(dateToggle, datePicker);
-    else openPicker(dateToggle, datePicker);
-  });
-  timeToggle.addEventListener('click', () => {
-    if (!chosenDateLabel) {
-      alert('Vui lòng chọn ngày hẹn trước khi chọn khung giờ.');
-      return;
-    }
-    const isOpen = timePicker.classList.contains('open');
-    closePicker(dateToggle, datePicker);
-    if (isOpen) closePicker(timeToggle, timePicker);
-    else openPicker(timeToggle, timePicker);
-  });
+  function buildSessionBlock(idx) {
+    const state = { dateLabel: '', dom: '', timeLabel: '' };
+    sessions[idx] = state;
+    const labelNum = idx + 1;
 
-  // Đệm ô trống để ngày đầu tiên (hôm nay) rơi đúng cột Thứ trong lưới lịch (T2=0 ... CN=6)
-  const todayOffset = (today.getDay() + 6) % 7;
-  for (let p = 0; p < todayOffset; p++) {
-    const empty = document.createElement('div');
-    empty.className = 'date-chip empty';
-    calGrid.appendChild(empty);
-  }
+    const wrap = document.createElement('div');
+    wrap.className = 'session-block';
+    wrap.innerHTML =
+      '<label class="booking-label">📅 Buổi ' + labelNum + ' — Chọn ngày hẹn</label>' +
+      '<button type="button" class="picker-toggle date-toggle-btn"><span class="toggle-text">Bấm để chọn ngày</span><span class="chevron">▾</span></button>' +
+      '<div class="date-picker"><div class="cal-dow-row"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div><div class="cal-grid"></div></div>' +
+      '<label class="booking-label">🕒 Buổi ' + labelNum + ' — Chọn khung giờ</label>' +
+      '<button type="button" class="picker-toggle time-toggle-btn"><span class="toggle-text">Bấm để chọn giờ</span><span class="chevron">▾</span></button>' +
+      '<div class="time-picker"></div>';
 
-  for (let i = 0; i < 14; i++) {
-    const d = new Date(today);
-    d.setDate(today.getDate() + i);
-    const chip = document.createElement('button');
-    chip.type = 'button';
-    chip.className = 'date-chip';
-    const dow = dowNames[d.getDay()];
-    const dom = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
-    const dayFullyBooked = ALL_TIMES.every(t => BOOKED_SLOTS.includes(dom + '_' + t));
-    chip.innerHTML = '<span class="dow">' + (i === 0 ? 'Hôm nay' : dow) + '</span><span class="dom">' + String(d.getDate()).padStart(2, '0') + '</span>';
-    chip.dataset.value = dom + ' (' + dow + ')';
-    chip.dataset.dom = dom;
-    if (dayFullyBooked) chip.classList.add('booked');
-    chip.addEventListener('click', () => {
-      if (chip.classList.contains('booked')) return;
-      calGrid.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      chosenDateLabel = chip.dataset.value;
-      chosenDom = chip.dataset.dom;
-      selectedDateInput.value = chosenDateLabel;
-      chosenTimeLabel = '';
-      selectedTimeInput.value = '';
-      bookingConfirm.classList.remove('show');
-      renderTimeSlots();
-      updateBookingConfirm();
+    const dateToggle = wrap.querySelector('.date-toggle-btn');
+    const dateToggleText = dateToggle.querySelector('.toggle-text');
+    const datePicker = wrap.querySelector('.date-picker');
+    const calGrid = wrap.querySelector('.cal-grid');
+    const timeToggle = wrap.querySelector('.time-toggle-btn');
+    const timeToggleText = timeToggle.querySelector('.toggle-text');
+    const timePicker = wrap.querySelector('.time-picker');
 
-      dateToggleText.textContent = chosenDateLabel;
-      dateToggle.classList.add('filled');
-      closePicker(dateToggle, datePicker);
-      openPicker(timeToggle, timePicker);
-      timeToggleText.textContent = 'Bấm để chọn giờ';
-      timeToggle.classList.remove('filled');
+    TIME_SLOTS.forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'time-slot';
+      b.dataset.time = t;
+      b.textContent = t;
+      timePicker.appendChild(b);
     });
-    calGrid.appendChild(chip);
-  }
 
-  function renderTimeSlots() {
-    timePicker.querySelectorAll('.time-slot').forEach(slot => {
-      slot.classList.remove('active');
-      const key = chosenDom + '_' + slot.dataset.time;
-      const isBooked = chosenDom && BOOKED_SLOTS.includes(key);
-      slot.classList.toggle('booked', !!isBooked);
-      let badge = slot.querySelector('.slot-badge');
-      if (isBooked) {
-        if (!badge) {
-          badge = document.createElement('span');
-          badge.className = 'slot-badge';
-          badge.textContent = 'Hết chỗ';
-          slot.appendChild(badge);
-        }
-      } else if (badge) {
-        badge.remove();
-      }
+    dateToggle.addEventListener('click', () => {
+      const isOpen = datePicker.classList.contains('open');
+      closePicker(timeToggle, timePicker);
+      if (isOpen) closePicker(dateToggle, datePicker);
+      else openPicker(dateToggle, datePicker);
     });
-  }
-
-  timePicker.querySelectorAll('.time-slot').forEach(slot => {
-    slot.addEventListener('click', () => {
-      if (slot.classList.contains('booked')) return;
-      if (!chosenDateLabel) {
+    timeToggle.addEventListener('click', () => {
+      if (!state.dateLabel) {
         alert('Vui lòng chọn ngày hẹn trước khi chọn khung giờ.');
         return;
       }
-      timePicker.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
-      slot.classList.add('active');
-      chosenTimeLabel = slot.dataset.time;
-      selectedTimeInput.value = chosenTimeLabel;
-      updateBookingConfirm();
-
-      timeToggleText.textContent = chosenTimeLabel;
-      timeToggle.classList.add('filled');
-      closePicker(timeToggle, timePicker);
+      const isOpen = timePicker.classList.contains('open');
+      closePicker(dateToggle, datePicker);
+      if (isOpen) closePicker(timeToggle, timePicker);
+      else openPicker(timeToggle, timePicker);
     });
+
+    const todayOffset = (today.getDay() + 6) % 7;
+    for (let p = 0; p < todayOffset; p++) {
+      const empty = document.createElement('div');
+      empty.className = 'date-chip empty';
+      calGrid.appendChild(empty);
+    }
+
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'date-chip';
+      const dow = dowNames[d.getDay()];
+      const dom = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
+      const dayFullyBooked = TIME_SLOTS.every(t => BOOKED_SLOTS.includes(dom + '_' + t));
+      chip.innerHTML = '<span class="dow">' + (i === 0 ? 'Hôm nay' : dow) + '</span><span class="dom">' + String(d.getDate()).padStart(2, '0') + '</span>';
+      chip.dataset.value = dom + ' (' + dow + ')';
+      chip.dataset.dom = dom;
+      if (dayFullyBooked) chip.classList.add('booked');
+      chip.addEventListener('click', () => {
+        if (chip.classList.contains('booked')) return;
+        const dupIdx = sessions.findIndex((s, i2) => i2 !== idx && s.dom === dom);
+        if (dupIdx !== -1) {
+          alert('Ngày này đã được chọn ở Buổi ' + (dupIdx + 1) + '. Vui lòng chọn ngày khác cho Buổi ' + labelNum + '.');
+          return;
+        }
+        calGrid.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        state.dateLabel = chip.dataset.value;
+        state.dom = chip.dataset.dom;
+        state.timeLabel = '';
+        renderTimeSlots();
+        updateSummary();
+
+        dateToggleText.textContent = state.dateLabel;
+        dateToggle.classList.add('filled');
+        closePicker(dateToggle, datePicker);
+        openPicker(timeToggle, timePicker);
+        timeToggleText.textContent = 'Bấm để chọn giờ';
+        timeToggle.classList.remove('filled');
+      });
+      calGrid.appendChild(chip);
+    }
+
+    function renderTimeSlots() {
+      timePicker.querySelectorAll('.time-slot').forEach(slot => {
+        slot.classList.remove('active');
+        const key = state.dom + '_' + slot.dataset.time;
+        const isBooked = state.dom && BOOKED_SLOTS.includes(key);
+        slot.classList.toggle('booked', !!isBooked);
+        let badge = slot.querySelector('.slot-badge');
+        if (isBooked) {
+          if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'slot-badge';
+            badge.textContent = 'Hết chỗ';
+            slot.appendChild(badge);
+          }
+        } else if (badge) {
+          badge.remove();
+        }
+      });
+    }
+
+    timePicker.querySelectorAll('.time-slot').forEach(slot => {
+      slot.addEventListener('click', () => {
+        if (slot.classList.contains('booked')) return;
+        if (!state.dateLabel) {
+          alert('Vui lòng chọn ngày hẹn trước khi chọn khung giờ.');
+          return;
+        }
+        timePicker.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
+        slot.classList.add('active');
+        state.timeLabel = slot.dataset.time;
+        updateSummary();
+
+        timeToggleText.textContent = state.timeLabel;
+        timeToggle.classList.add('filled');
+        closePicker(timeToggle, timePicker);
+      });
+    });
+
+    return wrap;
+  }
+
+  const allBlocks = [];
+  for (let i = 0; i < MAX_SESSIONS; i++) {
+    const block = buildSessionBlock(i);
+    if (i > 0) block.style.display = 'none';
+    sessionsContainer.appendChild(block);
+    allBlocks.push(block);
+  }
+
+  function resetSession(idx) {
+    sessions[idx] = { dateLabel: '', dom: '', timeLabel: '' };
+    const block = allBlocks[idx];
+    block.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
+    block.querySelectorAll('.time-slot').forEach(s => s.classList.remove('active'));
+    block.querySelector('.date-toggle-btn .toggle-text').textContent = 'Bấm để chọn ngày';
+    block.querySelector('.time-toggle-btn .toggle-text').textContent = 'Bấm để chọn giờ';
+    block.querySelector('.date-toggle-btn').classList.remove('filled');
+    block.querySelector('.time-toggle-btn').classList.remove('filled');
+  }
+
+  function activeSessionCount() {
+    return parseInt(sessionCountSelect.value, 10);
+  }
+
+  sessionCountSelect.addEventListener('change', () => {
+    const count = activeSessionCount();
+    allBlocks.forEach((block, i) => {
+      if (i < count) {
+        block.style.display = '';
+      } else {
+        block.style.display = 'none';
+        resetSession(i);
+      }
+    });
+    updateSummary();
   });
 
-  function updateBookingConfirm() {
-    if (chosenDateLabel && chosenTimeLabel) {
-      bookingConfirmText.textContent = chosenDateLabel + ' lúc ' + chosenTimeLabel;
-      bookingConfirm.classList.add('show');
+  function updateSummary() {
+    const count = activeSessionCount();
+    const lines = [];
+    for (let i = 0; i < count; i++) {
+      const s = sessions[i];
+      if (s && s.dateLabel && s.timeLabel) lines.push('Buổi ' + (i + 1) + ': ' + s.dateLabel + ' lúc ' + s.timeLabel);
     }
+    if (lines.length) {
+      bookingConfirmText.innerHTML = '✅ Đã chọn:<br>' + lines.join('<br>');
+      bookingConfirm.classList.add('show');
+    } else {
+      bookingConfirm.classList.remove('show');
+    }
+    updateEstimatedTotal();
+  }
+
+  function allSessionsFilled() {
+    const count = activeSessionCount();
+    for (let i = 0; i < count; i++) {
+      if (!sessions[i] || !sessions[i].dateLabel || !sessions[i].timeLabel) return false;
+    }
+    return true;
+  }
+
+  const PRICE_MAP = {
+    'Gói tắm bé Cơ bản': 110000,
+    'Gói tắm bé VIP': 150000,
+    'Phục hồi sau sinh': 460000,
+    'Massage mẹ bầu': 450000,
+    'Thông tắc tia sữa': 300000,
+    'Nanny cao cấp': 180000,
+    'Đặt tên cho bé': 628000
+  };
+  function formatVND(n) { return n.toLocaleString('vi-VN') + 'đ'; }
+  const packageSelect = document.getElementById('packageSelect');
+  const estimatedTotalNote = document.getElementById('estimatedTotalNote');
+  function updateEstimatedTotal() {
+    const unit = PRICE_MAP[packageSelect.value];
+    const count = activeSessionCount();
+    if (!unit) {
+      estimatedTotalNote.style.display = 'none';
+      return;
+    }
+    const isFar = typeof zoneSelect !== 'undefined' && zoneSelect.value === 'far';
+    let total = unit * count;
+    if (isFar) total += 10000 * count;
+    estimatedTotalNote.innerHTML = '💰 Số tiền cọc ước tính: <b>' + formatVND(total) + '</b> (' + count + ' buổi × ' + formatVND(unit) + (isFar ? ' + phụ phí đi lại' : '') + ') — giá tham khảo, Cô Chương sẽ báo giá chính xác qua Zalo.';
+    estimatedTotalNote.style.display = 'block';
   }
 
   const depositConfirm = document.getElementById('depositConfirm');
@@ -3722,7 +3846,9 @@ const BOOKED_SLOTS = [
       surchargeConfirm.checked = false;
       surchargeReminder.style.display = 'none';
     }
+    updateEstimatedTotal();
   });
+  packageSelect.addEventListener('change', updateEstimatedTotal);
 
   bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -3731,8 +3857,8 @@ const BOOKED_SLOTS = [
       zoneSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
       return;
     }
-    if (!chosenDateLabel || !chosenTimeLabel) {
-      alert('Vui lòng chọn ngày và khung giờ mong muốn trước khi gửi yêu cầu.');
+    if (!allSessionsFilled()) {
+      alert('Vui lòng chọn đầy đủ ngày và khung giờ cho tất cả các buổi đã chọn trước khi gửi yêu cầu.');
       return;
     }
     if (!depositConfirm.checked) {
@@ -3749,7 +3875,10 @@ const BOOKED_SLOTS = [
       setTimeout(() => surchargeCheck.classList.remove('missing'), 600);
       return;
     }
-    document.getElementById('bookingSuccessText').textContent = 'Lịch hẹn: ' + chosenDateLabel + ' lúc ' + chosenTimeLabel + '.';
+    const count = activeSessionCount();
+    const summaryLines = [];
+    for (let i = 0; i < count; i++) summaryLines.push('Buổi ' + (i + 1) + ': ' + sessions[i].dateLabel + ' lúc ' + sessions[i].timeLabel);
+    document.getElementById('bookingSuccessText').innerHTML = summaryLines.join('<br>');
     bookingForm.style.display = 'none';
     document.getElementById('bookingSuccess').style.display = 'block';
     document.getElementById('bookingSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -3762,16 +3891,25 @@ const BOOKED_SLOTS = [
   document.getElementById('zaloMsgBtn').addEventListener('click', () => {
     if (alreadySentToSheet || GOOGLE_SHEET_WEBHOOK_URL.indexOf('http') !== 0) return;
     alreadySentToSheet = true;
+    const count = activeSessionCount();
+    const ngayHenList = [];
+    const gioHenList = [];
+    for (let i = 0; i < count; i++) {
+      ngayHenList.push(sessions[i].dateLabel);
+      gioHenList.push(sessions[i].timeLabel);
+    }
+    const noteRaw = document.getElementById('customerNote').value;
+    const ghiChuWithMeta = (count > 1 ? '[Đặt ' + count + ' buổi cùng lúc' + (estimatedTotalNote.style.display === 'block' ? ', ' + estimatedTotalNote.textContent.replace('💰 ', '') : '') + '] ' : '') + noteRaw;
     const payload = {
       hoTen: document.getElementById('customerName').value,
       soDienThoai: document.getElementById('customerPhone').value,
       email: document.getElementById('customerEmail').value,
       diaChi: document.getElementById('customerAddress').value,
       khuVuc: zoneSelect.value === 'far' ? 'Ngoài khu vực Hải Hà (cũ)/Quảng Thành (phụ phí 10k)' : 'Quanh Hải Hà (cũ)/Quảng Thành',
-      goiDichVu: document.getElementById('packageSelect').value,
-      ngayHen: chosenDateLabel,
-      gioHen: chosenTimeLabel,
-      ghiChu: document.getElementById('customerNote').value,
+      goiDichVu: packageSelect.value,
+      ngayHen: ngayHenList.join(' | '),
+      gioHen: gioHenList.join(' | '),
+      ghiChu: ghiChuWithMeta,
       thoiGianGui: new Date().toLocaleString('vi-VN')
     };
     fetch(GOOGLE_SHEET_WEBHOOK_URL, {
